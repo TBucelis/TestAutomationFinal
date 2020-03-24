@@ -22,6 +22,7 @@ namespace TestAutomationFinal
         protected ProductPage productPage;
         protected SearchPage searchPage;
         protected WebDriverWait wait;
+        protected ProductFilterPage productFilterPage;
 
         [SetUp]
 
@@ -41,6 +42,7 @@ namespace TestAutomationFinal
             commonElements = new CommonElements(Driver);
             productPage = new ProductPage(Driver);
             searchPage = new SearchPage(Driver);
+            productFilterPage = new ProductFilterPage(Driver);
         }
 
         [TearDown]

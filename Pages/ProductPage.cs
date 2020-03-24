@@ -16,7 +16,7 @@ namespace TestAutomationFinal.Pages
         public void ClickAddToCart()
         {
             addToCardButton.Click();
-            
+
         }
     }
 }
