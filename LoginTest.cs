@@ -29,12 +29,10 @@ namespace TestAutomationFinal
         public void UserCanLogInTest()
         {
             homePage.goToUserLoginPage();
-            wait.Until(ExpectedConditions.ElementToBeClickable(loginPage.GetUserEmailField()));
             loginPage
                 .LoginAsUser(User.TestUser)
                 .AssertLogoutButtonVisible();
 
         }
-        
     }
 }

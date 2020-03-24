@@ -10,5 +10,26 @@ namespace TestAutomationFinal.Pages
         public SearchPage(IWebDriver driver) : base(driver)
         {
         }
+
+        private IWebElement firstProductFound => Driver.FindElement(By.CssSelector(".product-name"));
+
+        List<IWebElement> productsReturnedBySearch => new List<IWebElement>(Driver.FindElements(By.CssSelector(".priceRegular")));
+
+        public void ChooseFirstProductFound()
+        {
+            firstProductFound.Click();
+        }
+
+        public int QuantityOfProductsFound()
+        {
+            return productsReturnedBySearch.Count;
+        }
+
+        public bool ProductContainsKeyword(string keyWord)
+        {
+            return firstProductFound.Text.Contains(keyWord);
+        }
+
+
     }
 }

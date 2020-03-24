@@ -25,18 +25,18 @@ namespace TestAutomationFinal.Pages
 
         public LoginPage LoginAsUser(User user)
         {
-            WaitUntilEmailFieldIsLoaded();
-            userEmailField.SendKeys(user.UserEmail);
+            WaitUntilFormIsLoaded();
+            new Actions(Driver).SendKeys(userEmailField, user.UserEmail).Perform();
             userPasswordField.SendKeys(user.Password);
             submitButtonElement.Click();
             return this;
         }
 
-        public LoginPage WaitUntilEmailFieldIsLoaded()
+        public LoginPage WaitUntilFormIsLoaded()
         {
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            By emailField = By.Id("email");
-            wait.Until(ExpectedConditions.ElementIsVisible(emailField));
+            wait.Until(ExpectedConditions.ElementToBeClickable(submitButtonElement));
+            wait.Until(ExpectedConditions.ElementToBeClickable(userEmailField));
             return this;
         }
 

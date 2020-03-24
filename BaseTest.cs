@@ -23,6 +23,8 @@ namespace TestAutomationFinal
         protected SearchPage searchPage;
         protected WebDriverWait wait;
         protected ProductFilterPage productFilterPage;
+        protected ShoppingCartPage shoppingCartPage;
+        protected AccountPage accountPage;
 
         [SetUp]
 
@@ -43,6 +45,8 @@ namespace TestAutomationFinal
             productPage = new ProductPage(Driver);
             searchPage = new SearchPage(Driver);
             productFilterPage = new ProductFilterPage(Driver);
+            shoppingCartPage = new ShoppingCartPage(Driver);
+            accountPage = new AccountPage(Driver);
         }
 
         [TearDown]

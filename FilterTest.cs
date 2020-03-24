@@ -19,19 +19,14 @@ namespace TestAutomationFinal
             Driver.Url = "https://www.pet24.lt/sunims/drabuziai-ir-aksesuarai";
 
             var randomManufacturer = productFilterPage.pickRandomManufacturer();
-            var expectedQuantityFormatted =
-                productFilterPage.getQuantityOfProductsByManufacturer(randomManufacturer);
-            var expectedQuantity = Convert.ToInt32(expectedQuantityFormatted);
+            var expectedQuantity =
+                Convert.ToInt32(productFilterPage.getQuantityOfProductsByManufacturer(randomManufacturer));
 
             productFilterPage.ClickRandomManufacturer(randomManufacturer);
-
             productFilterPage.DropdownShowMaxItems();
 
             By loadingIcon = By.CssSelector(".product_list.grid.row #products_loader_icon");
             wait.Until(ExpectedConditions.InvisibilityOfElementLocated(loadingIcon));
-
-
-
 
             Assert.AreEqual(expectedQuantity, productFilterPage.actualQuantity());
 
