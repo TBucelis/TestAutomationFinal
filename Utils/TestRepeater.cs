@@ -11,7 +11,7 @@ namespace TestAutomationFinal
     class TestRepeater
     {
         private IWebDriver Driver;
-        [Test]
+       // [Test]
         public void LogoutTestCounter()
         {
             var numberOfTries = 5;

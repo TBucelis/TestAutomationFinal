@@ -22,6 +22,7 @@ namespace TestAutomationFinal.Pages
         public void LoginAsUser(User user)
         {
             WaitForAttributeNotToBe(loginFormWrapper, "style", "hidden");
+            
             new Actions(Driver).SendKeys(userEmailField, user.UserEmail).Perform();
             userPasswordField.SendKeys(user.Password);
             submitButtonElement.Click();

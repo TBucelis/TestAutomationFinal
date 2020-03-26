@@ -19,7 +19,12 @@ namespace TestAutomationFinal
             homePage.inputSearchQuery(searchValue);
             wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("[style='display: block;']")));
             searchPage.ChooseFirstProductFound();
-            Driver.Navigate().Refresh(); //paslepiam buga, neturetu reiketi tokio workaroundo.
+            
+            // paslepiam buga, workaroundas kad testas testusi
+            wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#view_full_size > #bigpic")));
+            Driver.Navigate().Refresh(); 
+            // iiiiiir vaziuojam toliau
+
             productPage.ClickAddToCart();
 
             var expectedProductName = productPage.GetProductName();
