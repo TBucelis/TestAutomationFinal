@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -21,10 +22,11 @@ namespace TestAutomationFinal
 
         [Test]
 
-        public void UserCanLogOutTest()
+        public void UserCanLogOut()
         {
-            loginPage.ClickLogoutButton()
-                .AssertUserIsLoggedOut();
+            WaitForPageToLoad();
+            accountPage.ClickLogoutButton();
+            loginPage.AssertUserIsLoggedOut();
         }
     }
 }

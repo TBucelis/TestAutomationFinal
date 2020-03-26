@@ -9,7 +9,7 @@ namespace TestAutomationFinal
     {
         [Test]
 
-        public void SearchKeyWordTest()
+        public void ProductCanBeFoundByKeyWord()
         {
             homePage.inputSearchQuery("maistas");
             Assert.IsTrue(searchPage.QuantityOfProductsFound() > 0);

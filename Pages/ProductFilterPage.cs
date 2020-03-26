@@ -9,11 +9,13 @@ namespace TestAutomationFinal.Pages
 {
     public class ProductFilterPage : BasePage
     {
+
+        List<IWebElement> manufacturerList => new List<IWebElement>(Driver.FindElements(By.CssSelector("#ul_layered_manufacturer_0 > li")));
+        List<IWebElement> actualProductQuantity => new List<IWebElement>( Driver.FindElements(By.CssSelector(".priceRegular")));
+
         public ProductFilterPage(IWebDriver driver) : base(driver)
         {
         }
-        List<IWebElement> manufacturerList => new List<IWebElement>(Driver.FindElements(By.CssSelector("#ul_layered_manufacturer_0 > li")));
-        List<IWebElement> actualProductQuantity => new List<IWebElement>( Driver.FindElements(By.CssSelector(".priceRegular")));
 
         public IWebElement pickRandomManufacturer()
         {
@@ -56,7 +58,5 @@ namespace TestAutomationFinal.Pages
         {
             return actualProductQuantity.Count;
         }
-
-
     }
 }

@@ -10,56 +10,39 @@ namespace TestAutomationFinal.Pages
 {
     public class LoginPage : BasePage
     {
+        private IWebElement userEmailField => Driver.FindElement(By.Id("email"));
+        private IWebElement userPasswordField => Driver.FindElement(By.Id("passwd"));
+        private IWebElement submitButtonElement => Driver.FindElement(By.Id("SubmitLogin"));
+        private IWebElement loginFormWrapper => Driver.FindElement(By.Id("login_form"));
+
         public LoginPage(IWebDriver driver) : base(driver)
         {
         }
 
-        private IWebElement userEmailField => Driver.FindElement(By.Id("email"));
-        private IWebElement userPasswordField => Driver.FindElement(By.Id("passwd"));
-
-        private IWebElement submitButtonElement => Driver.FindElement(By.Id("SubmitLogin"));
-
-        private IWebElement logoutButton => Driver.FindElement(By.CssSelector(".logout[title='Atsijungti']"));
-
-
-
-        public LoginPage LoginAsUser(User user)
+        public void LoginAsUser(User user)
         {
-            WaitUntilFormIsLoaded();
+            WaitForAttributeNotToBe(loginFormWrapper, "style", "hidden");
             new Actions(Driver).SendKeys(userEmailField, user.UserEmail).Perform();
             userPasswordField.SendKeys(user.Password);
             submitButtonElement.Click();
-            return this;
         }
-
-        public LoginPage WaitUntilFormIsLoaded()
-        {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            wait.Until(ExpectedConditions.ElementToBeClickable(submitButtonElement));
-            wait.Until(ExpectedConditions.ElementToBeClickable(userEmailField));
-            return this;
-        }
-
-        public void AssertLogoutButtonVisible()
-        {
-            Assert.IsNotNull(logoutButton);
-        }
-
-        public LoginPage ClickLogoutButton()
-        {
-            logoutButton.Click();
-            return this;
-        }
-
         public void AssertUserIsLoggedOut()
         {
             Assert.IsTrue(submitButtonElement.Displayed);
         }
-
-        public IWebElement GetUserEmailField()
+        public void WaitForAttributeNotToBe(IWebElement element, String attribute, String value)
         {
-            return userEmailField;
-        }
+            WebDriverWait wait = new WebDriverWait(Driver,TimeSpan.FromSeconds(10));
+            wait.Until<Boolean>((d)=>
+            {
+                
+                    String styleAttributeValue = element.GetAttribute(attribute);
+                    if (!styleAttributeValue.Contains(value))
+                        return true;
+                    else
+                        return false;
+            });
 
+        }
     }
 }

@@ -10,14 +10,16 @@ namespace TestAutomationFinal
 {
     class ShoppingBasketTests : BaseTest
     {
-
+        private string searchValue = "maistas";
+        
         [Test]
 
-        public void AddToCartTest()
+        public void ProductCanBeAddedToCart()
         {
-            homePage.inputSearchQuery("zaislai");
+            homePage.inputSearchQuery(searchValue);
             wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("[style='display: block;']")));
             searchPage.ChooseFirstProductFound();
+            Driver.Navigate().Refresh(); //paslepiam buga, neturetu reiketi tokio workaroundo.
             productPage.ClickAddToCart();
 
             var expectedProductName = productPage.GetProductName();

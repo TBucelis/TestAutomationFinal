@@ -8,11 +8,11 @@ namespace TestAutomationFinal.Pages
 {
     public class ShoppingCartPage : BasePage
     {
+        private IWebElement productName => Driver.FindElement(By.CssSelector(".product-name"));
+
         public ShoppingCartPage(IWebDriver driver) : base(driver)
         {
         }
-
-        private IWebElement productName => Driver.FindElement(By.CssSelector(".product-name"));
 
         public string GetProductNameInCart()
         {

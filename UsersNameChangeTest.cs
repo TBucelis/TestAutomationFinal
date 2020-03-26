@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Internal;
+using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
+using TestAutomationFinal.Utils;
 
 namespace TestAutomationFinal
 {
     class UsersNameChangeTest : BaseTest
     {
+        string newUserName;
+
         [SetUp]
 
         public void Login()
@@ -19,16 +26,17 @@ namespace TestAutomationFinal
 
         [Test]
 
-        public void ChangeUserName()
+        public void UsernameCanBeChanged()
         {
-            Thread.Sleep(5000);
             accountPage.GoToUserInfoPage();
-            Thread.Sleep(5000);
 
-            var firstNameField = Driver.FindElement(By.Id("firstname"));
-            firstNameField.Clear();
-            firstNameField.SendKeys("Tomuelis");
+            newUserName = DataGenerator.NameCapitalize(DataGenerator.GenerateRandomString(8));
+            userInfoPage.EnterNewName(newUserName)
+                .SubmitButtonClick()
+                .AssertSuccessMessageIsDisplayed()
+                .GoToUserInfoPage();
 
+            Assert.AreEqual(newUserName, Driver.FindElement(By.Id("firstname")).GetAttribute("value"));
         }
     }
 }

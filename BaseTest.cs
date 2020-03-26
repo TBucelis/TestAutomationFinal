@@ -25,6 +25,7 @@ namespace TestAutomationFinal
         protected ProductFilterPage productFilterPage;
         protected ShoppingCartPage shoppingCartPage;
         protected AccountPage accountPage;
+        protected UserInfoPage userInfoPage;
 
         [SetUp]
 
@@ -47,14 +48,33 @@ namespace TestAutomationFinal
             productFilterPage = new ProductFilterPage(Driver);
             shoppingCartPage = new ShoppingCartPage(Driver);
             accountPage = new AccountPage(Driver);
+            userInfoPage = new UserInfoPage(Driver);
+        }
+
+        public void WaitForPageToLoad()
+        {
+            try
+            {
+                Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0);
+                WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".logout[title='Atsijungti']")));
+            }
+            catch (WebDriverTimeoutException e)
+            {
+            }
+            finally
+            {
+                Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            }
+
         }
 
         [TearDown]
 
         public void QuitDriver()
         {
-            //MakeScreenshotOnTestFailure();
-            //Driver.Quit();
+            MakeScreenshotOnTestFailure();
+            Driver.Quit();
         }
 
         protected void MakeScreenshotOnTestFailure()

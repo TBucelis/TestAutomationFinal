@@ -25,21 +25,23 @@ namespace TestAutomationFinal
                     Assert.Fail("unsupported browser");
                     break;
             }
+            driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            
             return driver;
         }
 
         private static ChromeOptions GetChromeOptions()
         {
             ChromeOptions optionsChrome = new ChromeOptions();
-            optionsChrome.AddArguments("incognito", "start-maximized");
+            //optionsChrome.AddArguments("incognito");
             return optionsChrome;
         }
 
         private static FirefoxOptions GetFirefoxOptions()
         {
             FirefoxOptions optionsFirefox = new FirefoxOptions();
-            optionsFirefox.AddArguments("start-maximized");
+            optionsFirefox.AddArguments("");
             return optionsFirefox;
         }
     }

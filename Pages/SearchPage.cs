@@ -7,13 +7,12 @@ namespace TestAutomationFinal.Pages
 {
     public class SearchPage : BasePage
     {
+        private IWebElement firstProductFound => Driver.FindElement(By.CssSelector("a.product-name"));
+        List<IWebElement> productsReturnedBySearch => new List<IWebElement>(Driver.FindElements(By.CssSelector(".priceRegular")));
+
         public SearchPage(IWebDriver driver) : base(driver)
         {
         }
-
-        private IWebElement firstProductFound => Driver.FindElement(By.CssSelector(".product-name"));
-
-        List<IWebElement> productsReturnedBySearch => new List<IWebElement>(Driver.FindElements(By.CssSelector(".priceRegular")));
 
         public void ChooseFirstProductFound()
         {

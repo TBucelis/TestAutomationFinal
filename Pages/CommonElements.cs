@@ -8,12 +8,17 @@ namespace TestAutomationFinal.Pages
 {
     public  class CommonElements : BasePage
     {
-        public CommonElements(IWebDriver driver) : base(driver)
-        {
-        }
+
         private IWebElement cookiesBarCloseButton => Driver.FindElement(By.Id("lgcookieslaw_close"));
 
         private IWebElement shoppingCartButton => Driver.FindElement(By.Id("shopping_cart_container"));
+
+        private By loadingIcon = By.CssSelector(".product_list.grid.row #products_loader_icon");
+
+        public CommonElements(IWebDriver driver) : base(driver)
+        {
+        }
+
 
         public void CloseCookiesBar()
         {
@@ -25,6 +30,12 @@ namespace TestAutomationFinal.Pages
         public void GoToShoppingCart()
         {
             shoppingCartButton.Click();
+        }
+
+        public void WaitForLoadingIconToDissappear()
+        {
+            new WebDriverWait(Driver, TimeSpan.FromSeconds(10)).Until(
+                ExpectedConditions.InvisibilityOfElementLocated(loadingIcon));
         }
     }
 }

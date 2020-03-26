@@ -10,29 +10,23 @@ namespace TestAutomationFinal.Pages
 {
     public class HomePage : BasePage
     {
+        private IWebElement loginFormButton => Driver.FindElement(By.CssSelector(".login[title='Prisijungti']"));
+        private IWebElement searchBar => Driver.FindElement(By.Id("search_query_top"));
+        private IWebElement searchButton => Driver.FindElement(By.CssSelector("#searchbox > button"));
+
         public HomePage(IWebDriver driver) : base(driver)
         {
         }
-
-        private IWebElement loginFormButton => Driver.FindElement(By.CssSelector(".login[title='Prisijungti']"));
-
-        private IWebElement searchBar => Driver.FindElement(By.Id("search_query_top"));
-
-        private IWebElement searchButton => Driver.FindElement(By.CssSelector("#searchbox > button"));
-
 
         public void inputSearchQuery(string searchItem)
         {
             searchBar.SendKeys(searchItem);
             searchButton.Click();
-
         }
 
         public void goToUserLoginPage()
         {
             loginFormButton.Click();
         }
-
-
     }
 }
