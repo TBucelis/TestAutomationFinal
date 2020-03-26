@@ -23,5 +23,7 @@ namespace TestAutomationFinal
             loginPage.LoginAsUser(User.TestUser);
             accountPage.AssertLogoutButtonVisible();
         }
+
+        //truksta teardown logout
     }
 }

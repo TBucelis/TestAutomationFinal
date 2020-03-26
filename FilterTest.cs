@@ -19,13 +19,12 @@ namespace TestAutomationFinal
             Driver.Url = "https://www.pet24.lt/sunims/drabuziai-ir-aksesuarai";
 
             var randomManufacturer = productFilterPage.pickRandomManufacturer();
-            var expectedQuantity =
-                Convert.ToInt32(productFilterPage.getQuantityOfProductsByManufacturer(randomManufacturer));
+            var expectedQuantity = productFilterPage.getQuantityOfProductsByManufacturer(randomManufacturer); 
 
             productFilterPage.ClickRandomManufacturer(randomManufacturer);
             productFilterPage.DropdownShowMaxItems();
 
-            commonElements.WaitForLoadingIconToDissappear();
+            commonElements.WaitForLoadingIconToDissappear();  // sitas irgi turetu pasislepti actualQuantity
 
             Assert.AreEqual(expectedQuantity, productFilterPage.actualQuantity());
         }

@@ -11,6 +11,7 @@ namespace TestAutomationFinal
 
         public void ProductCanBeFoundByKeyWord()
         {
+            //gali tureti lokalu kintamaji
             homePage.inputSearchQuery("maistas");
             Assert.IsTrue(searchPage.QuantityOfProductsFound() > 0);
             Assert.IsTrue(searchPage.ProductContainsKeyword("maistas"));

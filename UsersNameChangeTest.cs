@@ -36,7 +36,7 @@ namespace TestAutomationFinal
                 .AssertSuccessMessageIsDisplayed()
                 .GoToUserInfoPage();
 
-            Assert.AreEqual(newUserName, Driver.FindElement(By.Id("firstname")).GetAttribute("value"));
+            Assert.AreEqual(newUserName, Driver.FindElement(By.Id("firstname")).GetAttribute("value")); // page object pattern pazeidimas. Teste neturi buti nieko kas susija su find element
         }
     }
 }

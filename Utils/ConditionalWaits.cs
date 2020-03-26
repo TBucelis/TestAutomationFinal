@@ -14,19 +14,21 @@ namespace TestAutomationFinal.Utils
             var numberOfTries = 10;
             var pollingIntervalInMilliSeconds = 500;
 
-            try
-            {
-                while (Driver.FindElement(menuOptionLocator).Displayed && numberOfTries > 0)
+            var isDisplayed = true;
+                while ( isDisplayed && numberOfTries > 0)
                 {
-                    Driver.FindElement(menuOptionLocator).Click();
-                    numberOfTries--;
-                    Thread.Sleep(pollingIntervalInMilliSeconds);
+                    try
+                    {
+                        Driver.FindElement(menuOptionLocator).Click();
+                        numberOfTries--;
+                        Thread.Sleep(pollingIntervalInMilliSeconds);
+                        isDisplayed = Driver.FindElement(menuOptionLocator).Displayed;
+                    }
+                    catch (NoSuchElementException e)
+                    {
+                        isDisplayed = false;
+                    }
                 }
-            }
-            catch (NoSuchElementException e)
-            {
-            }
-
         }
     }
 }

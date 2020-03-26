@@ -13,9 +13,9 @@ namespace TestAutomationFinal.Pages
     public class AccountPage : BasePage
     {
 
-        private IWebElement logoutButton => Driver.FindElement(By.CssSelector("[title='  Atsijungti']"));
+        private IWebElement logoutButton => Driver.FindElement(By.CssSelector("[title='  Atsijungti']")); // .logout ?
         private By personalInfoButtonLocator => By.CssSelector("[title='Informacija']");
-        private By logoutButtonLocator => By.CssSelector("[title='  Atsijungti']");
+        private By logoutButtonLocator => By.CssSelector("[title='  Atsijungti']"); // sita by gali perpanaudoti ieskant elemento 
 
         public AccountPage(IWebDriver driver) : base(driver)
         {

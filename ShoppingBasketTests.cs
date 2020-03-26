@@ -17,11 +17,11 @@ namespace TestAutomationFinal
         public void ProductCanBeAddedToCart()
         {
             homePage.inputSearchQuery(searchValue);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("[style='display: block;']")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("[style='display: block;']")));  //irgi turetu buti idetas arba i inputsearcquery arba choose first product found
             searchPage.ChooseFirstProductFound();
             
             // paslepiam buga, workaroundas kad testas testusi
-            wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#view_full_size > #bigpic")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("#view_full_size > #bigpic"))); // :D
             Driver.Navigate().Refresh(); 
             // iiiiiir vaziuojam toliau
 
@@ -31,7 +31,7 @@ namespace TestAutomationFinal
 
             productPage.CloseShoppingCartModalMessage();
             commonElements.GoToShoppingCart();
-            shoppingCartPage.WaitForCartToLoad();
+            shoppingCartPage.WaitForCartToLoad(); //testai neturi rupeti kad kazkas kraunasi
 
             var actualProductName = shoppingCartPage.GetProductNameInCart();
 

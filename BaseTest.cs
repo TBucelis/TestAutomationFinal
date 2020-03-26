@@ -57,7 +57,7 @@ namespace TestAutomationFinal
             {
                 Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0);
                 WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".logout[title='Atsijungti']")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".logout[title='Atsijungti']"))); // turetu uztekti .logout
             }
             catch (WebDriverTimeoutException e)
             {

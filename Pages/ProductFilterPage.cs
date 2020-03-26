@@ -46,6 +46,7 @@ namespace TestAutomationFinal.Pages
 
         public void DropdownShowMaxItems()
         {
+            // turetu buti virsuje ir uztektu vienos paieskos (#nb_item option) arba is quantityShownProducts pasidaryti selectElement
             var quantityShownProducts = Driver.FindElement(By.Id("nb_item"));
             var selectQuantity = quantityShownProducts.FindElements(By.CssSelector("option")).Count;
 
@@ -56,6 +57,7 @@ namespace TestAutomationFinal.Pages
 
         public int actualQuantity()
         {
+
             return actualProductQuantity.Count;
         }
     }
